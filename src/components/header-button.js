@@ -4,7 +4,7 @@ import {Image, TouchableHighlight} from 'react-native'
 export default class HeaderButton extends Component {
 	render() {
 		return (
-			<TouchableHighlight style={[styles.container, this.props.style]} underlayColor="#FFF" onPress={this.props.onPress}>
+			<TouchableHighlight style={[styles.container, this.props.style]} onPress={this.props.onPress}>
 				<Image style={styles.image} source={this.props.source}/>
 			</TouchableHighlight>
 		)

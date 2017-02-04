@@ -21,7 +21,7 @@ export default class Languages extends Component {
 	async componentDidMount() {
 		const languages = await db.get('languages')
 
-		setTimeout(() => this.setState({dataSource: this.ds.cloneWithRows(languages), languages}))
+		this.setState({dataSource: this.ds.cloneWithRows(languages), languages})
 	}
 
 	_getName(code) {

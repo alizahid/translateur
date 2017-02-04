@@ -13,7 +13,6 @@ import {db, images} from '../helpers'
 
 export default class Main extends Component {
 	state = {
-		languages: [],
 		text: ''
 	}
 
@@ -49,7 +48,7 @@ export default class Main extends Component {
 					<Image style={styles.header.logo} source={images.translateur}/>
 					<HeaderButton style={styles.header.button} source={images.menu} onPress={() => this._languageSelector()}/>
 				</View>
-				<Languages languages={this.state.languages}/>
+				{this.state.languages && <Languages languages={this.state.languages}/>}
 				<Textarea style={styles.input} onChangeText={text => this.setState({text})} placeholder="Type something…"/>
 				<Button label="Translate" onPress={() => this._translate()}/>
 			</MainView>

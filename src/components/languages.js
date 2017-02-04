@@ -1,25 +1,27 @@
 import React, {Component} from 'react'
 import {ListView, Text, View} from 'react-native'
 
-import {db} from '../helpers'
-
 import data from '../data'
 
 export default class Languages extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 
 		this.ds = new ListView.DataSource({
 			rowHasChanged: (r1, r2) => r1 !== r2
 		})
 
-		this.state = {}
+		this.state = {
+			dataSource: this.ds.cloneWithRows(props.languages),
+			languages: props.languages
+		}
 	}
 
-	async componentDidMount() {
-		const languages = await db.get('languages')
-
-		this.setState({dataSource: this.ds.cloneWithRows(languages), languages})
+	componentWillReceiveProps(props) {
+		this.setState({
+			dataSource: this.ds.cloneWithRows(props.languages),
+			languages: props.languages
+		})
 	}
 
 	_getName(code) {

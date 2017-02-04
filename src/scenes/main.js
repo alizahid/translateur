@@ -13,7 +13,18 @@ import {db, images} from '../helpers'
 
 export default class Main extends Component {
 	state = {
+		languages: [],
 		text: ''
+	}
+
+	async componentDidMount() {
+		const languages = await db.get('languages')
+
+		this.setState({languages})
+	}
+
+	componentWillReceiveProps() {
+		this.componentDidMount()
 	}
 
 	_translate() {
@@ -38,7 +49,7 @@ export default class Main extends Component {
 					<Image style={styles.header.logo} source={images.translateur}/>
 					<HeaderButton style={styles.header.button} source={images.menu} onPress={() => this._languageSelector()}/>
 				</View>
-				<Languages/>
+				<Languages languages={this.state.languages}/>
 				<Textarea style={styles.input} onChangeText={text => this.setState({text})} placeholder="Type something…"/>
 				<Button label="Translate" onPress={() => this._translate()}/>
 			</MainView>

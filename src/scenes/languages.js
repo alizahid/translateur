@@ -15,34 +15,47 @@ import {db, images} from '../helpers'
 import data from '../data'
 
 export default class Onboarding extends Component {
-	constructor() {
-		super()
-
-		const languages = data.languages.map(language => ({
-			...language,
-			selected: false
-		}))
+	constructor(props) {
+		super(props)
 
 		this.ds = new ListView.DataSource({
 			rowHasChanged: (r1, r2) => r1 !== r2
 		})
 
 		this.state = {
-			dataSource: this.ds.cloneWithRows(languages),
-			languages,
+			dataSource: this.ds.cloneWithRows(data.languages),
+			languages: data.languages,
+			onboarding: props.route.index === 0,
 			query: '',
-			selected: 0
+			selected: []
+		}
+	}
+
+	async componentDidMount() {
+		if (!this.state.onboarding) {
+			const selected = await db.get('languages', [])
+
+			let languages = this.state.languages.map(language => ({
+				...language,
+				selected: selected.indexOf(language.code) >= 0
+			}))
+
+			this.setState({dataSource: this.ds.cloneWithRows(languages), languages, selected})
 		}
 	}
 
 	async _continue() {
-		if (this.state.selected > 0) {
-			let languages = this.state.languages.filter(language => language.selected).map(language => language.code)
+		if (this.state.selected.length > 0) {
+			if (this.state.onboarding) {
+				await db.put('onboarding', true)
+				await db.put('languages', this.state.selected)
 
-			await db.put('onboarding', true)
-			await db.put('languages', languages)
+				this.props.navigator.push({name: 'main'})
+			} else {
+				await db.put('languages', this.state.selected)
 
-			this.props.navigator.push({name: 'main'})
+				this.props.navigator.pop()
+			}
 		}
 	}
 
@@ -69,15 +82,23 @@ export default class Onboarding extends Component {
 
 		data.selected = !data.selected
 
-		let selected = this.state.selected
-
-		if (data.selected) {
-			selected++
-		} else {
-			selected--
-		}
+		let selected = this._select(data)
 
 		this.setState({dataSource: this.ds.cloneWithRows(languages), languages: this.state.languages, selected})
+	}
+
+	_select(data) {
+		const selected = this.state.selected
+
+		let index = selected.indexOf(data.code)
+
+		if (index >= 0) {
+			selected.splice(index, 1)
+		} else {
+			selected.push(data.code)
+		}
+
+		return selected.sort()
 	}
 
 	_renderRow(data, index) {
@@ -106,12 +127,12 @@ export default class Onboarding extends Component {
 			<MainView style={styles.container}>
 				<View style={styles.header.container}>
 					<Text style={styles.header.title}>Select languages</Text>
-					<Text style={styles.header.subtitle}>You can change these later</Text>
+					{this.state.onboarding && <Text style={styles.header.subtitle}>You can change these later</Text>}
 					<Input onChangeText={query => this._filter(query)} placeholder="Filter"/>
 				</View>
 				<ListView dataSource={this.state.dataSource} renderRow={(data, section, row) => this._renderRow(data, row)} renderSeparator={(section, row) => this._renderSeparator(row)} enableEmptySections={true}/>
 				<View>
-					{this.state.selected > 0 && <Button label="Continue" onPress={() => this._continue()}/>}
+					{this.state.selected.length > 0 && <Button label={this.state.onboarding ? 'Continue' : 'Save'} onPress={() => this._continue()}/>}
 				</View>
 			</MainView>
 		)

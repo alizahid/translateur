@@ -1,9 +1,9 @@
 import Main from './main'
-import Onboarding from './onboarding'
+import Languages from './languages'
 import Translations from './translations'
 
 export {
 	Main,
-	Onboarding,
+	Languages,
 	Translations
 }

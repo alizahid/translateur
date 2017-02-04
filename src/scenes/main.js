@@ -8,7 +8,7 @@ import {
 	View
 } from 'react-native'
 
-import {Button, Languages, MainView, Textarea} from '../components'
+import {Button, HeaderButton, Languages, MainView, Textarea} from '../components'
 import {db, images} from '../helpers'
 
 export default class Main extends Component {
@@ -24,11 +24,19 @@ export default class Main extends Component {
 		}
 	}
 
+	_languageSelector() {
+		this.props.navigator.push({
+			index: this.props.route.index + 1,
+			name: 'languages'
+		})
+	}
+
 	render() {
 		return (
 			<MainView style={styles.container}>
 				<View style={styles.header.container}>
 					<Image style={styles.header.logo} source={images.translateur}/>
+					<HeaderButton style={styles.header.button} source={images.menu} onPress={() => this._languageSelector()}/>
 				</View>
 				<Languages/>
 				<Textarea style={styles.input} onChangeText={text => this.setState({text})} placeholder="Type something…"/>
@@ -44,7 +52,10 @@ const styles = {
 	},
 	header: {
 		container: {
+			alignItems: 'flex-start',
 			backgroundColor: '#1C1F2B',
+			flexDirection: 'row',
+			justifyContent: 'space-between',
 			paddingTop: Platform.OS === 'ios' ? 20 : 0
 		},
 		logo: {

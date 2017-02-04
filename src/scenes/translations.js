@@ -19,7 +19,7 @@ export default class Translations extends Component {
 		}
 	}
 
-	async componentWillMount() {
+	async componentDidMount() {
 		const languages = await db.get('languages')
 
 		let translations = await translate(this.props.route.text, languages)

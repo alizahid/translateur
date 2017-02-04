@@ -1,13 +1,15 @@
 import React, {Component} from 'react'
 import {Navigator, StatusBar, View} from 'react-native'
 
-import {Main, Onboarding, Translations} from './scenes'
+import {Main, Languages, Translations} from './scenes'
 
 import {db} from './helpers'
 
 export default class Translateur extends Component {
 	state = {
-		route: {}
+		route: {
+			index: 0
+		}
 	}
 
 	async componentDidMount() {
@@ -16,7 +18,7 @@ export default class Translateur extends Component {
 		if (onboarding) {
 			this.state.route.name = 'main'
 		} else {
-			this.state.route.name = 'onboarding'
+			this.state.route.name = 'languages'
 		}
 
 		this.setState({route: this.state.route})
@@ -24,9 +26,9 @@ export default class Translateur extends Component {
 
 	_renderScene(route, navigator) {
 		if (route.name === 'main') {
-			return <Main navigator={navigator}/>
-		} else if (route.name === 'onboarding') {
-			return <Onboarding route={route} navigator={navigator}/>
+			return <Main route={route} navigator={navigator}/>
+		} else if (route.name === 'languages') {
+			return <Languages route={route} navigator={navigator}/>
 		} else if (route.name === 'translations') {
 			return <Translations route={route} navigator={navigator}/>
 		}

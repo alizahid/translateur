@@ -47,16 +47,10 @@ const styles = {
 			backgroundColor: '#1C1F2B',
 			paddingTop: Platform.OS === 'ios' ? 20 : 0
 		},
-		title: {
-			color: '#FFF',
-			fontSize: 32,
-			margin: 10,
-			fontWeight: '200'
-		},
 		logo: {
-			height: 92 / 3,
+			height: 180 / 4,
 			margin: 15,
-			width: 121 / 3
+			width: 237 / 4
 		}
 	},
 	input: {

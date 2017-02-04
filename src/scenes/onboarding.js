@@ -97,11 +97,7 @@ export default class Onboarding extends Component {
 		)
 	}
 
-	_renderSeparator(row, total) {
-		if (parseInt(row) === total - 1) {
-			return
-		}
-
+	_renderSeparator(row) {
 		return <View key={row} style={styles.list.separator}/>
 	}
 
@@ -113,7 +109,7 @@ export default class Onboarding extends Component {
 					<Text style={styles.header.subtitle}>You can change these later</Text>
 					<Input onChangeText={query => this._filter(query)} placeholder="Filter"/>
 				</View>
-				<ListView dataSource={this.state.dataSource} renderRow={(data, section, row) => this._renderRow(data, row)} renderSeparator={(section, row) => this._renderSeparator(row, this.state.dataSource.getRowCount())} enableEmptySections={true}/>
+				<ListView dataSource={this.state.dataSource} renderRow={(data, section, row) => this._renderRow(data, row)} renderSeparator={(section, row) => this._renderSeparator(row)} enableEmptySections={true}/>
 				<View>
 					{this.state.selected > 0 && <Button label="Continue" onPress={() => this._continue()}/>}
 				</View>

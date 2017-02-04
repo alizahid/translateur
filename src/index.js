@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Navigator, StatusBar, View} from 'react-native'
 
-import {Main, Onboarding} from './scenes'
+import {Main, Onboarding, Translations} from './scenes'
 
 import {db} from './helpers'
 
@@ -27,6 +27,8 @@ export default class Translateur extends Component {
 			return <Main navigator={navigator}/>
 		} else if (route.name === 'onboarding') {
 			return <Onboarding route={route} navigator={navigator}/>
+		} else if (route.name === 'translations') {
+			return <Translations route={route} navigator={navigator}/>
 		}
 	}
 

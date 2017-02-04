@@ -12,8 +12,16 @@ import {Button, Languages, MainView, Textarea} from '../components'
 import {db, images} from '../helpers'
 
 export default class Main extends Component {
+	state = {
+		text: ''
+	}
+
 	_translate() {
-		console.log(123)
+		let text = this.state.text
+
+		if (text.length > 0) {
+			this.props.navigator.push({name: 'translations', text})
+		}
 	}
 
 	render() {
@@ -23,7 +31,7 @@ export default class Main extends Component {
 					<Image style={styles.header.logo} source={images.translateur}/>
 				</View>
 				<Languages/>
-				<Textarea style={styles.input} placeholder="Type something…"/>
+				<Textarea style={styles.input} onChangeText={text => this.setState({text})} placeholder="Type something…"/>
 				<Button label="Translate" onPress={() => this._translate()}/>
 			</MainView>
 		)

@@ -1,5 +1,13 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, ListView, Platform, Text, View} from 'react-native'
+import {
+	ActivityIndicator,
+	Clipboard,
+	ListView,
+	Platform,
+	Text,
+	TouchableHighlight,
+	View
+} from 'react-native'
 
 import {HeaderButton, MainView} from '../components'
 import {db, images, translate} from '../helpers'
@@ -35,14 +43,26 @@ export default class Translations extends Component {
 		return this.state.dataSource.getRowCount() === 0
 	}
 
+	_copy(text) {
+		Clipboard.setString(text)
+	}
+
+	_language(code) {
+		return data.languages.find(language => language.code === code)
+	}
+
 	_renderRow(data) {
+		const language = this._language(data.language)
+
 		return (
-			<View style={styles.list.container}>
-				<View style={styles.list.label.container}>
-					<Text style={styles.list.label.text}>{data.language.toUpperCase()}</Text>
+			<TouchableHighlight onPress={() => this._copy(data.text)}>
+				<View style={styles.list.container}>
+					<View style={styles.list.label.container}>
+						<Text style={styles.list.label.text}>{language.name}</Text>
+					</View>
+					<Text style={styles.list.translation}>{data.text}</Text>
 				</View>
-				<Text style={styles.list.translation}>{data.text}</Text>
-			</View>
+			</TouchableHighlight>
 		)
 	}
 
@@ -56,7 +76,7 @@ export default class Translations extends Component {
 				<View style={styles.header.container}>
 					<HeaderButton source={images.left} onPress={() => this._back()}/>
 				</View>
-				{this._loading() || <ListView style={styles.list.view} dataSource={this.state.dataSource} renderRow={data => this._renderRow(data)} renderSeparator={(section, row) => this._renderSeparator(row)} enableEmptySections={true}/>}
+				{this._loading() || <ListView dataSource={this.state.dataSource} renderRow={data => this._renderRow(data)} renderSeparator={(section, row) => this._renderSeparator(row)} enableEmptySections={true}/>}
 				{this._loading() && <ActivityIndicator style={styles.loading}/>}
 			</MainView>
 		)
@@ -90,19 +110,16 @@ const styles = {
 		}
 	},
 	list: {
-		view: {},
 		container: {
-			alignItems: 'center',
-			borderRadius: 10 / 2,
-			flexDirection: 'row',
 			padding: 10
 		},
 		label: {
 			container: {
+				alignSelf: 'flex-start',
 				backgroundColor: '#1C1F2B',
-				borderRadius: 100,
-				padding: 10,
-				marginRight: 10
+				borderRadius: 5,
+				padding: 5,
+				marginBottom: 10
 			},
 			text: {
 				color: '#FFF',

@@ -13,9 +13,7 @@ export default class Languages extends Component {
 			rowHasChanged: (r1, r2) => r1 !== r2
 		})
 
-		this.state = {
-			dataSource: this.ds
-		}
+		this.state = {}
 	}
 
 	async componentDidMount() {
@@ -41,6 +39,10 @@ export default class Languages extends Component {
 	}
 
 	render() {
+		if (!this.state.dataSource) {
+			return null
+		}
+
 		return (
 			<View style={[this.props.style]}>
 				<ListView style={styles.container} dataSource={this.state.dataSource} renderRow={data => this._renderRow(data)} renderSeparator={(section, row) => this._renderSeparator(row)} horizontal={true} enableEmptySections={true}/>

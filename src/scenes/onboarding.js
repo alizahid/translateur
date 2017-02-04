@@ -14,7 +14,7 @@ import {db, images} from '../helpers'
 
 import data from '../data'
 
-export default class Translateur extends Component {
+export default class Onboarding extends Component {
 	constructor() {
 		super()
 

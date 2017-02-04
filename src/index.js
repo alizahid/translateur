@@ -23,12 +23,10 @@ export default class Translateur extends Component {
 	}
 
 	_renderScene(route, navigator) {
-		console.log(route)
-
 		if (route.name === 'main') {
 			return <Main navigator={navigator}/>
 		} else if (route.name === 'onboarding') {
-			return <Onboarding navigator={navigator}/>
+			return <Onboarding route={route} navigator={navigator}/>
 		}
 	}
 

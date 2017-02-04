@@ -11,7 +11,7 @@ import {
 import {Button, Languages, MainView, Textarea} from '../components'
 import {db, images} from '../helpers'
 
-export default class Translateur extends Component {
+export default class Main extends Component {
 	_translate() {
 		console.log(123)
 	}

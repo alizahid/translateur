@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {
 	ActivityIndicator,
-	BackAndroid,
 	Clipboard,
 	ListView,
 	Platform,
@@ -26,8 +25,6 @@ export default class Translations extends Component {
 		this.state = {
 			dataSource: this.ds
 		}
-
-		BackAndroid.addEventListener('hardwareBackPress', () => this._back())
 	}
 
 	async componentDidMount() {
@@ -36,10 +33,6 @@ export default class Translations extends Component {
 		let translations = await translate(this.props.route.text, languages)
 
 		this.setState({dataSource: this.ds.cloneWithRows(translations), languages})
-	}
-
-	componentWillUnmount() {
-		BackAndroid.removeEventListener('hardwareBackPress')
 	}
 
 	_back() {

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {
-	BackAndroid,
 	Image,
 	ListView,
 	Platform,
@@ -30,10 +29,6 @@ export default class Onboarding extends Component {
 			query: '',
 			selected: []
 		}
-
-		if (!this.state.onboarding) {
-			BackAndroid.addEventListener('hardwareBackPress', () => this._continue())
-		}
 	}
 
 	async componentDidMount() {
@@ -49,19 +44,13 @@ export default class Onboarding extends Component {
 		}
 	}
 
-	componentWillUnmount() {
-		if (!this.state.onboarding) {
-			BackAndroid.removeEventListener('hardwareBackPress', () => this._continue())
-		}
-	}
-
 	async _continue() {
 		if (this.state.selected.length > 0) {
 			if (this.state.onboarding) {
 				await db.put('onboarding', true)
 				await db.put('languages', this.state.selected)
 
-				this.props.navigator.push({name: 'main'})
+				this.props.navigator.replace({name: 'main'})
 			} else {
 				await db.put('languages', this.state.selected)
 

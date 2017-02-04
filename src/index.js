@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Navigator, StatusBar, View} from 'react-native'
+import {BackAndroid, Navigator, StatusBar, View} from 'react-native'
 
 import {Main, Languages, Translations} from './scenes'
 
@@ -10,6 +10,20 @@ export default class Translateur extends Component {
 		route: {
 			index: 0
 		}
+	}
+
+	constructor() {
+		super()
+
+		BackAndroid.addEventListener('hardwareBackPress', () => {
+			if (this._navigator.getCurrentRoutes().length > 1) {
+				this._navigator.pop()
+
+				return true
+			} else {
+				return false
+			}
+		})
 	}
 
 	async componentDidMount() {
@@ -41,7 +55,7 @@ export default class Translateur extends Component {
 		return (
 			<View style={styles.container}>
 				<StatusBar backgroundColor="#1C1F2B" barStyle="light-content"/>
-				<Navigator initialRoute={this.state.route} renderScene={this._renderScene}/>
+				<Navigator ref={ref => this._navigator = ref} initialRoute={this.state.route} renderScene={this._renderScene}/>
 			</View>
 		)
 	}

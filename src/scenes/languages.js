@@ -49,6 +49,12 @@ export default class Onboarding extends Component {
 		}
 	}
 
+	componentWillUnmount() {
+		if (!this.state.onboarding) {
+			BackAndroid.removeEventListener('hardwareBackPress', () => this._continue())
+		}
+	}
+
 	async _continue() {
 		if (this.state.selected.length > 0) {
 			if (this.state.onboarding) {

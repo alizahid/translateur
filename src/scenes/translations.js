@@ -38,6 +38,10 @@ export default class Translations extends Component {
 		this.setState({dataSource: this.ds.cloneWithRows(translations), languages})
 	}
 
+	componentWillUnmount() {
+		BackAndroid.removeEventListener('hardwareBackPress')
+	}
+
 	_back() {
 		this.props.navigator.pop()
 	}

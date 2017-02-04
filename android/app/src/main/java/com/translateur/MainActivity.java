@@ -1,4 +1,4 @@
-package com.translateur;
+package co.translateur;
 
 import com.facebook.react.ReactActivity;
 

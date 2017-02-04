@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {
+	BackAndroid,
 	Image,
 	ListView,
 	Platform,
@@ -28,6 +29,10 @@ export default class Onboarding extends Component {
 			onboarding: props.route.index === 0,
 			query: '',
 			selected: []
+		}
+
+		if (!this.state.onboarding) {
+			BackAndroid.addEventListener('hardwareBackPress', () => this._continue())
 		}
 	}
 

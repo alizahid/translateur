@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {
 	ActivityIndicator,
+	BackAndroid,
 	Clipboard,
 	ListView,
 	Platform,
@@ -25,6 +26,8 @@ export default class Translations extends Component {
 		this.state = {
 			dataSource: this.ds
 		}
+
+		BackAndroid.addEventListener('hardwareBackPress', () => this._back())
 	}
 
 	async componentDidMount() {
@@ -77,7 +80,7 @@ export default class Translations extends Component {
 					<HeaderButton source={images.left} onPress={() => this._back()}/>
 				</View>
 				{this._loading() || <ListView dataSource={this.state.dataSource} renderRow={data => this._renderRow(data)} renderSeparator={(section, row) => this._renderSeparator(row)} enableEmptySections={true}/>}
-				{this._loading() && <ActivityIndicator style={styles.loading}/>}
+				{this._loading() && <ActivityIndicator style={styles.loading} color="white"/>}
 			</MainView>
 		)
 	}

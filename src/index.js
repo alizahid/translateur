@@ -25,12 +25,15 @@ export default class Translateur extends Component {
 	}
 
 	_renderScene(route, navigator) {
-		if (route.name === 'main') {
-			return <Main route={route} navigator={navigator}/>
-		} else if (route.name === 'languages') {
-			return <Languages route={route} navigator={navigator}/>
-		} else if (route.name === 'translations') {
-			return <Translations route={route} navigator={navigator}/>
+		switch (route.name) {
+			case 'main':
+				return <Main route={route} navigator={navigator}/>
+
+			case 'languages':
+				return <Languages route={route} navigator={navigator}/>
+
+			case 'translations':
+				return <Translations route={route} navigator={navigator}/>
 		}
 	}
 

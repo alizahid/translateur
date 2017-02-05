@@ -3,13 +3,12 @@ import {
 	ActivityIndicator,
 	Clipboard,
 	ListView,
-	Platform,
 	Text,
 	TouchableHighlight,
 	View
 } from 'react-native'
 
-import {HeaderButton, MainView} from '../components'
+import {MainView} from '../components'
 import {db, images, translate} from '../helpers'
 
 import data from '../data'
@@ -73,9 +72,6 @@ export default class Translations extends Component {
 	render() {
 		return (
 			<MainView style={styles.container}>
-				<View style={styles.header.container}>
-					<HeaderButton source={images.left} onPress={() => this._back()}/>
-				</View>
 				{this._loading() || <ListView dataSource={this.state.dataSource} renderRow={data => this._renderRow(data)} renderSeparator={(section, row) => this._renderSeparator(row)} enableEmptySections={true}/>}
 				{this._loading() && <ActivityIndicator style={styles.loading} color="white"/>}
 			</MainView>
@@ -89,13 +85,6 @@ const styles = {
 	},
 	container: {
 		backgroundColor: '#2D3143'
-	},
-	header: {
-		container: {
-			alignItems: 'flex-start',
-			backgroundColor: '#1C1F2B',
-			paddingTop: Platform.OS === 'ios' ? 20 : 0
-		}
 	},
 	text: {
 		container: {

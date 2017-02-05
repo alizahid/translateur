@@ -1,15 +1,7 @@
 import React, {Component} from 'react'
-import {
-	Image,
-	ListView,
-	Platform,
-	ScrollView,
-	Text,
-	TouchableHighlight,
-	View
-} from 'react-native'
+import {Image, ListView, Text, TouchableHighlight, View} from 'react-native'
 
-import {Button, Input, MainView} from '../components'
+import {Input, MainView} from '../components'
 import {db, images} from '../helpers'
 
 import data from '../data'
@@ -25,10 +17,13 @@ export default class Onboarding extends Component {
 		this.state = {
 			dataSource: this.ds.cloneWithRows(data.languages),
 			languages: data.languages,
-			onboarding: props.route.index === 0,
+			onboarding: props.navigator.getCurrentRoutes().length === 1,
 			query: '',
 			selected: []
 		}
+
+		props.route.action = this._continue.bind(this)
+		props.route.icon = images.check
 	}
 
 	async componentDidMount() {
@@ -44,17 +39,17 @@ export default class Onboarding extends Component {
 		}
 	}
 
-	async _continue() {
+	async _continue(route, navigator, index) {
 		if (this.state.selected.length > 0) {
 			if (this.state.onboarding) {
 				await db.put('onboarding', true)
 				await db.put('languages', this.state.selected)
 
-				this.props.navigator.replace({name: 'main'})
+				navigator.replace({name: 'main'})
 			} else {
 				await db.put('languages', this.state.selected)
 
-				this.props.navigator.pop()
+				navigator.pop()
 			}
 		}
 	}
@@ -131,9 +126,6 @@ export default class Onboarding extends Component {
 					<Input onChangeText={query => this._filter(query)} placeholder="Filter"/>
 				</View>
 				<ListView dataSource={this.state.dataSource} renderRow={(data, section, row) => this._renderRow(data, row)} renderSeparator={(section, row) => this._renderSeparator(row)} enableEmptySections={true}/>
-				<View>
-					{this.state.selected.length > 0 && <Button label={this.state.onboarding ? 'Continue' : 'Save'} onPress={() => this._continue()}/>}
-				</View>
 			</MainView>
 		)
 	}
@@ -145,8 +137,7 @@ const styles = {
 	},
 	header: {
 		container: {
-			backgroundColor: '#1C1F2B',
-			paddingTop: Platform.OS === 'ios' ? 20 : 0
+			backgroundColor: '#1C1F2B'
 		},
 		title: {
 			color: 'white',

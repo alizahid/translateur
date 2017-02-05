@@ -1,15 +1,21 @@
 import React, {Component} from 'react'
-import {BackAndroid, Navigator, StatusBar, View} from 'react-native'
+import {
+	BackAndroid,
+	Image,
+	Navigator,
+	Platform,
+	StatusBar,
+	TouchableHighlight,
+	View
+} from 'react-native'
 
 import {Main, Languages, Translations} from './scenes'
 
-import {db} from './helpers'
+import {db, images} from './helpers'
 
 export default class Translateur extends Component {
 	state = {
-		route: {
-			index: 0
-		}
+		route: {}
 	}
 
 	constructor() {
@@ -51,11 +57,41 @@ export default class Translateur extends Component {
 		}
 	}
 
+	_navigationBar() {
+		return <Navigator.NavigationBar style={styles.nav.bar} routeMapper={this._routerMapper()}/>
+	}
+
+	_routerMapper() {
+		return {
+			LeftButton(route, navigator, index) {
+				if (index === 0) {
+					return
+				}
+
+				return (
+					<TouchableHighlight style={styles.nav.button.container} onPress={() => navigator.pop()}>
+						<Image style={styles.nav.button.icon} source={images.left}/>
+					</TouchableHighlight>
+				)
+			},
+			RightButton(route, navigator, index) {
+				return (
+					<TouchableHighlight style={styles.nav.button.container} onPress={() => route.action(route, navigator, index)}>
+						<Image style={styles.nav.button.icon} source={route.icon}/>
+					</TouchableHighlight>
+				)
+			},
+			Title() {
+				return null
+			}
+		}
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
 				<StatusBar backgroundColor="#1C1F2B" barStyle="light-content"/>
-				<Navigator ref={ref => this._navigator = ref} initialRoute={this.state.route} renderScene={this._renderScene}/>
+				<Navigator sceneStyle={styles.scene} ref={ref => this._navigator = ref} initialRoute={this.state.route} renderScene={this._renderScene} navigationBar={this._navigationBar()}/>
 			</View>
 		)
 	}
@@ -64,5 +100,30 @@ export default class Translateur extends Component {
 const styles = {
 	container: {
 		flex: 1
+	},
+	nav: {
+		bar: {
+			backgroundColor: '#1C1F2B'
+		},
+		button: {
+			container: {
+				padding: Navigator.NavigationBar.Styles.General.NavBarHeight / 4
+			},
+			icon: {
+				height: Navigator.NavigationBar.Styles.General.NavBarHeight / 2,
+				width: Navigator.NavigationBar.Styles.General.NavBarHeight / 2
+			}
+		}
+	},
+	scene: {
+		overflow: 'visible',
+		paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight,
+		shadowColor: 'black',
+		shadowOffset: {
+			height: 0,
+			width: 0
+		},
+		shadowOpacity: 0.5,
+		shadowRadius: 5
 	}
 }

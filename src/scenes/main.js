@@ -1,19 +1,18 @@
 import React, {Component} from 'react'
-import {
-	Image,
-	KeyboardAvoidingView,
-	Platform,
-	ScrollView,
-	Text,
-	View
-} from 'react-native'
 
-import {Button, HeaderButton, Languages, MainView, Textarea} from '../components'
+import {Button, Languages, MainView, Textarea} from '../components'
 import {db, images} from '../helpers'
 
 export default class Main extends Component {
 	state = {
 		text: ''
+	}
+
+	constructor(props) {
+		super(props)
+
+		props.route.action = this._languageSelector
+		props.route.icon = images.languages
 	}
 
 	async componentDidMount() {
@@ -34,20 +33,13 @@ export default class Main extends Component {
 		}
 	}
 
-	_languageSelector() {
-		this.props.navigator.push({
-			index: this.props.route.index + 1,
-			name: 'languages'
-		})
+	_languageSelector(route, navigator) {
+		navigator.push({name: 'languages'})
 	}
 
 	render() {
 		return (
 			<MainView style={styles.container}>
-				<View style={styles.header.container}>
-					<Image style={styles.header.logo} source={images.translateur}/>
-					<HeaderButton style={styles.header.button} source={images.menu} onPress={() => this._languageSelector()}/>
-				</View>
 				{this.state.languages && <Languages languages={this.state.languages}/>}
 				<Textarea style={styles.input} onChangeText={text => this.setState({text})} placeholder="Type something…"/>
 				<Button label="Translate" onPress={() => this._translate()}/>
@@ -59,20 +51,6 @@ export default class Main extends Component {
 const styles = {
 	container: {
 		backgroundColor: '#2D3143'
-	},
-	header: {
-		container: {
-			alignItems: 'flex-start',
-			backgroundColor: '#1C1F2B',
-			flexDirection: 'row',
-			justifyContent: 'space-between',
-			paddingTop: Platform.OS === 'ios' ? 20 : 0
-		},
-		logo: {
-			height: 180 / 4,
-			margin: 15,
-			width: 237 / 4
-		}
 	},
 	input: {
 		flex: 1

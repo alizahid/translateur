@@ -1,7 +1,13 @@
 {
   "name": "Translateur",
-  "version": "0.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Multiple translations instantly",
+  "author": "Ali Zahid <ali.zahid@live.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/translateur/app.git"
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"

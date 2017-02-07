@@ -9,11 +9,13 @@ import {
 	View
 } from 'react-native'
 
+import codePush from 'react-native-code-push'
+
 import {Main, Languages, Translations} from './scenes'
 
 import {db, images} from './helpers'
 
-export default class Translateur extends Component {
+class Translateur extends Component {
 	state = {
 		route: {}
 	}
@@ -96,6 +98,8 @@ export default class Translateur extends Component {
 		)
 	}
 }
+
+export default codePush(Translateur)
 
 const styles = {
 	container: {

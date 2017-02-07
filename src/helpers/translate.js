@@ -1,4 +1,4 @@
-import {GOOGLE_TRANSLATE_API_KEY} from 'react-native-dotenv'
+import CONFIG from 'react-native-config'
 
 export function request(url, language) {
 	return new Promise((resolve, reject) => {
@@ -12,7 +12,7 @@ export function request(url, language) {
 
 export default function translate(text, languages) {
 	return new Promise((resolve, reject) => {
-		let requests = languages.map(language => request(`https://www.googleapis.com/language/translate/v2?q=${encodeURIComponent(text)}&target=${language}&key=${GOOGLE_TRANSLATE_API_KEY}`, language))
+		let requests = languages.map(language => request(`https://www.googleapis.com/language/translate/v2?q=${encodeURIComponent(text)}&target=${language}&key=${CONFIG.GOOGLE_TRANSLATE_API_KEY}`, language))
 
 		Promise.all(requests).then(data => {
 			let source = data[0].source

@@ -78,6 +78,7 @@ export default class Translations extends Component {
 	render() {
 		return (
 			<MainView>
+				<Text style={styles.label}>Tap to copy translation</Text>
 				{this._loading() || <ListView dataSource={this.state.dataSource} renderRow={data => this._renderRow(data)} renderSeparator={(section, row) => this._renderSeparator(row)} enableEmptySections={true}/>}
 				{this._loading() && <ActivityIndicator style={styles.loading} color="white"/>}
 			</MainView>
@@ -89,20 +90,22 @@ const styles = {
 	loading: {
 		flex: 1
 	},
+	label: {
+		...theme.paragraph,
+		backgroundColor: theme.accent,
+		padding: theme.margin,
+		textAlign: 'center'
+	},
 	list: {
 		container: {
 			padding: theme.margin
 		},
 		label: {
 			container: {
-				alignSelf: 'flex-start',
-				backgroundColor: theme.accent,
-				borderRadius: theme.borderRadius,
-				padding: theme.margin / 2,
 				marginBottom: theme.margin
 			},
 			text: {
-				color: theme.color,
+				color: theme.placeholder,
 				fontSize: 12
 			}
 		},

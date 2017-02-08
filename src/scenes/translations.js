@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {
 	ActivityIndicator,
+	Alert,
 	Clipboard,
 	ListView,
 	Text,
@@ -29,17 +30,22 @@ export default class Translations extends Component {
 	async componentDidMount() {
 		const languages = await db.get('languages')
 
-		let translations = await translate(this.props.route.text, languages)
+		try {
+			let translations = await translate(this.props.route.text, languages)
 
-		this.setState({dataSource: this.ds.cloneWithRows(translations), languages})
-	}
-
-	_back() {
-		this.props.navigator.pop()
+			this.setState({dataSource: this.ds.cloneWithRows(translations), languages})
+		} catch (error) {
+			Alert.alert(null, error.message, [
+				{
+					text: 'OK',
+					onPress: () => this.props.navigator.pop()
+				}
+			], {cancelable: false})
+		}
 	}
 
 	_loading() {
-		return this.state.dataSource.getRowCount() === 0
+		return this.state.dataSource.getRowCount() === 0 && !this.state.error
 	}
 
 	_copy(text) {

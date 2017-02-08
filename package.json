@@ -16,7 +16,8 @@
     "react": "15.4.2",
     "react-native": "0.41.0",
     "react-native-code-push": "^1.17.0-beta",
-    "react-native-config": "^0.3.1"
+    "react-native-config": "^0.3.1",
+    "react-native-share": "^1.0.19"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",

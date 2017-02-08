@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import cl.json.RNSharePackage;
 import com.microsoft.codepush.react.CodePush;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.react.ReactInstanceManager;
@@ -33,7 +34,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new CodePush(getResources().getString(BuildConfig.CODEPUSH_KEY_ANDROID), getApplicationContext(), BuildConfig.DEBUG),
+            new RNSharePackage(),
+            new CodePush(BuildConfig.CODEPUSH_KEY_ANDROID, getApplicationContext(), BuildConfig.DEBUG),
             new ReactNativeConfigPackage()
       );
     }

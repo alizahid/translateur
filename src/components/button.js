@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {Text, TouchableHighlight} from 'react-native'
 
+import {theme} from '../helpers'
+
 export default class Button extends Component {
 	render() {
 		return (
@@ -13,11 +15,11 @@ export default class Button extends Component {
 
 const styles = {
 	container: {
-		backgroundColor: '#1C1F2B',
-		padding: 15,
-		alignItems: 'center'
+		alignItems: 'center',
+		backgroundColor: theme.accent,
+		padding: theme.margin
 	},
 	label: {
-		color: '#FFF'
+		color: theme.color
 	}
 }

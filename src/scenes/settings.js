@@ -12,7 +12,7 @@ import {
 import Share from 'react-native-share'
 
 import {MainView} from '../components'
-import {db, images, translate} from '../helpers'
+import {db, images, theme} from '../helpers'
 
 import data from '../data'
 
@@ -94,18 +94,18 @@ const styles = {
 		container: {
 			alignItems: 'center',
 			flexDirection: 'row',
-			padding: 10
+			padding: theme.margin
 		},
 		icon: {
 			height: 20,
 			width: 20
 		},
 		label: {
-			color: '#FFF',
-			marginLeft: 10
+			color: theme.color,
+			marginLeft: theme.margin
 		},
 		separator: {
-			backgroundColor: 'rgba(0, 0, 0, 0.125)',
+			backgroundColor: theme.border,
 			height: 1
 		}
 	}

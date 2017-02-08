@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {KeyboardAvoidingView} from 'react-native'
 
+import {theme} from '../helpers'
+
 export default class MainView extends Component {
 	render() {
 		return (
@@ -13,7 +15,7 @@ export default class MainView extends Component {
 
 const styles = {
 	container: {
-		backgroundColor: '#2D3143',
+		backgroundColor: theme.primary,
 		flex: 1
 	}
 }

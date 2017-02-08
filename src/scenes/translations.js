@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 
 import {MainView} from '../components'
-import {db, images, translate} from '../helpers'
+import {db, images, theme, translate} from '../helpers'
 
 import data from '../data'
 
@@ -89,42 +89,29 @@ const styles = {
 	loading: {
 		flex: 1
 	},
-	text: {
-		container: {
-			backgroundColor: '#1C1F2B',
-			padding: 10,
-			paddingTop: 0
-		},
-		label: {
-			color: '#FFF',
-			lineHeight: 22,
-			textAlign: 'center'
-		}
-	},
 	list: {
 		container: {
-			padding: 10
+			padding: theme.margin
 		},
 		label: {
 			container: {
 				alignSelf: 'flex-start',
-				backgroundColor: '#1C1F2B',
-				borderRadius: 5,
-				padding: 5,
-				marginBottom: 10
+				backgroundColor: theme.accent,
+				borderRadius: theme.borderRadius,
+				padding: theme.margin / 2,
+				marginBottom: theme.margin
 			},
 			text: {
-				color: '#FFF',
+				color: theme.color,
 				fontSize: 12
 			}
 		},
 		translation: {
-			color: '#FFF',
-			flex: 1,
-			lineHeight: 22
+			...theme.paragraph,
+			flex: 1
 		},
 		separator: {
-			backgroundColor: 'rgba(0, 0, 0, 0.125)',
+			backgroundColor: theme.border,
 			height: 1
 		}
 	}

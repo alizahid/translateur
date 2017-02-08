@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {TextInput, View} from 'react-native'
 
+import {theme} from '../helpers'
+
 export default class Input extends Component {
 	render() {
 		return (
@@ -13,15 +15,15 @@ export default class Input extends Component {
 
 const styles = {
 	container: {
-		backgroundColor: 'rgba(0, 0, 0, 0.125)'
+		backgroundColor: theme.border
 	},
 	input: {
-		color: '#FFF',
+		color: theme.color,
 		fontSize: 14,
 		height: 50,
-		padding: 15
+		padding: theme.margin
 	},
 	placeholder: {
-		color: '#666'
+		color: theme.placeholder
 	}
 }

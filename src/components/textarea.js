@@ -1,26 +1,23 @@
 import React, {Component} from 'react'
 import {TextInput, View} from 'react-native'
 
+import {theme} from '../helpers'
+
 export default class Textarea extends Component {
 	render() {
-		return (
-			<View style={[styles.container, this.props.style]}>
-				<TextInput style={styles.input} onChangeText={this.props.onChangeText} placeholder={this.props.placeholder} placeholderTextColor={styles.placeholder.color} multiline={true} underlineColorAndroid="transparent"/>
-			</View>
-		)
+		return <TextInput style={styles.input} onChangeText={this.props.onChangeText} placeholder={this.props.placeholder} placeholderTextColor={styles.placeholder.color} multiline={true} underlineColorAndroid="transparent"/>
 	}
 }
 
 const styles = {
-	container: {},
 	input: {
-		color: '#EEE',
+		color: theme.color,
 		flex: 1,
 		fontSize: 14,
-		padding: 15,
+		padding: theme.margin,
 		textAlignVertical: 'top'
 	},
 	placeholder: {
-		color: 'rgba(255, 255, 255, 0.5)'
+		color: theme.placeholder
 	}
 }

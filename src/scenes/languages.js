@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Image, ListView, Text, TouchableHighlight, View} from 'react-native'
 
 import {Input, MainView} from '../components'
-import {db, images} from '../helpers'
+import {db, images, theme} from '../helpers'
 
 import data from '../data'
 
@@ -134,17 +134,15 @@ export default class Onboarding extends Component {
 const styles = {
 	header: {
 		container: {
-			backgroundColor: '#1C1F2B'
+			backgroundColor: theme.accent
 		},
 		title: {
-			color: 'white',
-			fontSize: 24,
-			fontWeight: '300',
-			margin: 15
+			...theme.h1,
+			margin: theme.margin
 		},
 		subtitle: {
-			color: '#999',
-			margin: 15,
+			color: theme.gray,
+			margin: theme.margin,
 			marginTop: 0
 		}
 	},
@@ -153,11 +151,10 @@ const styles = {
 			alignItems: 'center',
 			flexDirection: 'row',
 			justifyContent: 'space-between',
-			paddingHorizontal: 15,
-			paddingVertical: 10
+			padding: theme.margin
 		},
 		label: {
-			color: '#FFF'
+			color: theme.color
 		},
 		image: {
 			height: 20,
@@ -168,7 +165,7 @@ const styles = {
 			opacity: 1
 		},
 		separator: {
-			backgroundColor: 'rgba(0, 0, 0, 0.125)',
+			backgroundColor: theme.border,
 			height: 1
 		}
 	}

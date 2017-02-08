@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {ListView, Text, View} from 'react-native'
 
+import {theme} from '../helpers'
+
 import data from '../data'
 
 export default class Languages extends Component {
@@ -55,17 +57,17 @@ export default class Languages extends Component {
 
 const styles = {
 	container: {
-		backgroundColor: '#1C1F2B',
-		padding: 15
+		backgroundColor: theme.accent,
+		padding: theme.margin
 	},
 	list: {
 		container: {
-			backgroundColor: '#2D3143',
-			borderRadius: 10 / 2,
+			backgroundColor: theme.primary,
+			borderRadius: theme.borderRadius,
 			padding: 10
 		},
 		label: {
-			color: '#FFF',
+			color: theme.color,
 			fontSize: 12
 		},
 		separator: {

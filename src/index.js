@@ -13,7 +13,7 @@ import codePush from 'react-native-code-push'
 
 import {About, Main, Languages, Settings, Translations} from './scenes'
 
-import {db, images} from './helpers'
+import {db, images, theme} from './helpers'
 
 class Translateur extends Component {
 	state = {
@@ -98,7 +98,7 @@ class Translateur extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<StatusBar backgroundColor="#1C1F2B" barStyle="light-content"/>
+				<StatusBar backgroundColor={theme.accent} barStyle="light-content"/>
 				<Navigator sceneStyle={styles.scene} ref={ref => this._navigator = ref} initialRoute={this.state.route} renderScene={this._renderScene} navigationBar={this._navigationBar()}/>
 			</View>
 		)
@@ -113,7 +113,7 @@ const styles = {
 	},
 	nav: {
 		bar: {
-			backgroundColor: '#1C1F2B'
+			backgroundColor: theme.accent
 		},
 		button: {
 			container: {

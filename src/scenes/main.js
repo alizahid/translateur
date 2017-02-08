@@ -41,15 +41,9 @@ export default class Main extends Component {
 		return (
 			<MainView>
 				{this.state.languages && <Languages languages={this.state.languages}/>}
-				<Textarea style={styles.input} onChangeText={text => this.setState({text})} placeholder="Type something…"/>
+				<Textarea onChangeText={text => this.setState({text})} placeholder="Type something…"/>
 				<Button label="Translate" onPress={() => this._translate()}/>
 			</MainView>
 		)
-	}
-}
-
-const styles = {
-	input: {
-		flex: 1
 	}
 }

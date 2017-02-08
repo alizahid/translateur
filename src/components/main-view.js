@@ -13,6 +13,7 @@ export default class MainView extends Component {
 
 const styles = {
 	container: {
+		backgroundColor: '#2D3143',
 		flex: 1
 	}
 }

@@ -77,7 +77,7 @@ export default class Translations extends Component {
 
 	render() {
 		return (
-			<MainView style={styles.container}>
+			<MainView>
 				{this._loading() || <ListView dataSource={this.state.dataSource} renderRow={data => this._renderRow(data)} renderSeparator={(section, row) => this._renderSeparator(row)} enableEmptySections={true}/>}
 				{this._loading() && <ActivityIndicator style={styles.loading} color="white"/>}
 			</MainView>
@@ -88,9 +88,6 @@ export default class Translations extends Component {
 const styles = {
 	loading: {
 		flex: 1
-	},
-	container: {
-		backgroundColor: '#2D3143'
 	},
 	text: {
 		container: {

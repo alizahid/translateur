@@ -39,7 +39,7 @@ export default class Main extends Component {
 
 	render() {
 		return (
-			<MainView style={styles.container}>
+			<MainView>
 				{this.state.languages && <Languages languages={this.state.languages}/>}
 				<Textarea style={styles.input} onChangeText={text => this.setState({text})} placeholder="Type something…"/>
 				<Button label="Translate" onPress={() => this._translate()}/>
@@ -49,9 +49,6 @@ export default class Main extends Component {
 }
 
 const styles = {
-	container: {
-		backgroundColor: '#2D3143'
-	},
 	input: {
 		flex: 1
 	}

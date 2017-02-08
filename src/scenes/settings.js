@@ -82,7 +82,7 @@ export default class Settings extends Component {
 
 	render() {
 		return (
-			<MainView style={styles.container}>
+			<MainView>
 				<ListView dataSource={this.state.dataSource} renderRow={data => this._renderRow(data)} renderSeparator={(section, row) => this._renderSeparator(row)} enableEmptySections={true}/>
 			</MainView>
 		)
@@ -90,9 +90,6 @@ export default class Settings extends Component {
 }
 
 const styles = {
-	container: {
-		backgroundColor: '#2D3143'
-	},
 	list: {
 		container: {
 			alignItems: 'center',

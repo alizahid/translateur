@@ -119,7 +119,7 @@ export default class Onboarding extends Component {
 
 	render() {
 		return (
-			<MainView style={styles.container}>
+			<MainView>
 				<View style={styles.header.container}>
 					<Text style={styles.header.title}>Select languages</Text>
 					{this.state.onboarding && <Text style={styles.header.subtitle}>You can change these later</Text>}
@@ -132,9 +132,6 @@ export default class Onboarding extends Component {
 }
 
 const styles = {
-	container: {
-		backgroundColor: '#2D3143'
-	},
 	header: {
 		container: {
 			backgroundColor: '#1C1F2B'

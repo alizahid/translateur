@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {Image, Linking, ScrollView, Text, TouchableHighlight} from 'react-native'
+import {Image, Linking, ScrollView, Text} from 'react-native'
 
-import {MainView} from '../components'
+import {Button, MainView} from '../components'
 import {images, theme} from '../helpers'
 
 export default class About extends Component {
@@ -17,9 +17,7 @@ export default class About extends Component {
 					<Text style={styles.h2}>Translateur</Text>
 					<Text style={styles.h3}>multiple translations instantly</Text>
 					<Text style={styles.text}>Use Translateur to translate your text into more than 60 languages with one tap</Text>
-					<TouchableHighlight style={styles.button.container} onPress={() => this._website()}>
-						<Text style={styles.button.label}>Check our website</Text>
-					</TouchableHighlight>
+					<Button style={styles.button} label="Check our website" onPress={() => this._website()}/>
 				</MainView>
 			</ScrollView>
 		)
@@ -46,16 +44,8 @@ const styles = {
 	},
 	text: theme.paragraph,
 	button: {
-		container: {
-			alignItems: 'center',
-			backgroundColor: theme.accent,
-			borderRadius: theme.borderRadius,
-			marginBottom: theme.margin,
-			marginTop: theme.margin * 2,
-			padding: theme.margin
-		},
-		label: {
-			color: theme.color
-		}
+		borderRadius: theme.borderRadius,
+		marginBottom: theme.margin,
+		marginTop: theme.margin * 2
 	}
 }

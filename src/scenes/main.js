@@ -11,8 +11,8 @@ export default class Main extends Component {
 	constructor(props) {
 		super(props)
 
-		props.route.action = this._languageSelector
-		props.route.icon = images.languages
+		props.route.action = this._settings
+		props.route.icon = images.settings
 	}
 
 	async componentDidMount() {
@@ -33,8 +33,8 @@ export default class Main extends Component {
 		}
 	}
 
-	_languageSelector(route, navigator) {
-		navigator.push({name: 'languages'})
+	_settings(route, navigator) {
+		navigator.push({name: 'settings'})
 	}
 
 	render() {

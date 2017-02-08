@@ -11,7 +11,7 @@ import {
 
 import codePush from 'react-native-code-push'
 
-import {Main, Languages, Translations} from './scenes'
+import {About, Main, Languages, Settings, Translations} from './scenes'
 
 import {db, images} from './helpers'
 
@@ -50,6 +50,12 @@ class Translateur extends Component {
 		switch (route.name) {
 			case 'main':
 				return <Main route={route} navigator={navigator}/>
+
+			case 'settings':
+				return <Settings route={route} navigator={navigator}/>
+
+			case 'about':
+				return <About route={route} navigator={navigator}/>
 
 			case 'languages':
 				return <Languages route={route} navigator={navigator}/>

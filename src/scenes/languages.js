@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Image, ListView, Text, TouchableHighlight, View} from 'react-native'
+import {Image, ListView, Text, TouchableOpacity, View} from 'react-native'
 
 import {Input, MainView} from '../components'
 import {db, images, theme} from '../helpers'
@@ -104,12 +104,12 @@ export default class Onboarding extends Component {
 		}
 
 		return (
-			<TouchableHighlight onPress={() => this._toggle(data, index)}>
+			<TouchableOpacity onPress={() => this._toggle(data, index)}>
 				<View style={styles.list.container}>
 					<Text style={styles.list.label}>{data.name}</Text>
 					<Image style={style} source={images.check}/>
 				</View>
-			</TouchableHighlight>
+			</TouchableOpacity>
 		)
 	}
 

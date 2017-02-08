@@ -5,7 +5,7 @@ import {
 	ListView,
 	Platform,
 	Text,
-	TouchableHighlight,
+	TouchableOpacity,
 	View
 } from 'react-native'
 
@@ -67,12 +67,12 @@ export default class Settings extends Component {
 
 	_renderRow(data) {
 		return (
-			<TouchableHighlight onPress={() => this._action(data)}>
+			<TouchableOpacity onPress={() => this._action(data)}>
 				<View style={styles.list.container}>
 					<Image style={styles.list.icon} source={data.icon}/>
 					<Text style={styles.list.label}>{data.label}</Text>
 				</View>
-			</TouchableHighlight>
+			</TouchableOpacity>
 		)
 	}
 

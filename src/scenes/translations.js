@@ -5,7 +5,7 @@ import {
 	Clipboard,
 	ListView,
 	Text,
-	TouchableHighlight,
+	TouchableOpacity,
 	View
 } from 'react-native'
 
@@ -60,14 +60,14 @@ export default class Translations extends Component {
 		const language = this._language(data.language)
 
 		return (
-			<TouchableHighlight onPress={() => this._copy(data.text)}>
+			<TouchableOpacity onPress={() => this._copy(data.text)}>
 				<View style={styles.list.container}>
 					<View style={styles.list.label.container}>
 						<Text style={styles.list.label.text}>{language.name}</Text>
 					</View>
 					<Text style={styles.list.translation}>{data.text}</Text>
 				</View>
-			</TouchableHighlight>
+			</TouchableOpacity>
 		)
 	}
 

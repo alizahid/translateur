@@ -5,7 +5,7 @@ import {
 	Navigator,
 	Platform,
 	StatusBar,
-	TouchableHighlight,
+	TouchableOpacity,
 	View
 } from 'react-native'
 
@@ -77,16 +77,16 @@ class Translateur extends Component {
 				}
 
 				return (
-					<TouchableHighlight style={styles.nav.button.container} onPress={() => navigator.pop()}>
+					<TouchableOpacity style={styles.nav.button.container} onPress={() => navigator.pop()}>
 						<Image style={styles.nav.button.icon} source={images.left}/>
-					</TouchableHighlight>
+					</TouchableOpacity>
 				)
 			},
 			RightButton(route, navigator, index) {
 				return (
-					<TouchableHighlight style={styles.nav.button.container} onPress={() => route.action(route, navigator, index)}>
+					<TouchableOpacity style={styles.nav.button.container} onPress={() => route.action(route, navigator, index)}>
 						<Image style={styles.nav.button.icon} source={route.icon}/>
-					</TouchableHighlight>
+					</TouchableOpacity>
 				)
 			},
 			Title() {

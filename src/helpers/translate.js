@@ -2,7 +2,13 @@ import CONFIG from 'react-native-config'
 
 export function request(url, language) {
 	return new Promise((resolve, reject) => {
-		fetch(url).then(response => response.json()).then(json => {
+		fetch(url).then(response => {
+			if (response.status === 200) {
+				return response.json()
+			} else {
+				throw Error('Something went wrong. Please try again later')
+			}
+		}).then(json => {
 			let translation = json.data.translations.pop()
 
 			resolve({language, source: translation.detectedSourceLanguage, text: translation.translatedText})

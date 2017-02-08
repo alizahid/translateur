@@ -30,8 +30,8 @@ const styles = {
 		padding: theme.margin
 	},
 	logo: {
-		height: 51,
-		width: 69
+		height: 170 / 3,
+		width: 230 / 3
 	},
 	h2: {
 		...theme.h2,

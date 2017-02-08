@@ -64,7 +64,7 @@ const styles = {
 		container: {
 			backgroundColor: theme.primary,
 			borderRadius: theme.borderRadius,
-			padding: 10
+			padding: theme.padding
 		},
 		label: {
 			color: theme.color,

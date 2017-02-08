@@ -9,6 +9,7 @@ const theme = {
 	placeholder: 'rgba(255, 255, 255, 0.5)',
 
 	margin: 15,
+	padding: 10,
 	borderRadius: 5,
 
 	h1: {
